@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0d0a19">
+<meta name="description" content="Alexandre Tro Arribas — Graphics Programmer (C++ / real-time rendering)">
+<title>Alexandre Tro | Graphics Programmer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{--bg:#0d0a19;--bgr:13,10,25;--card:#17122c;--border:#2f2754;--a:200,150,255;--b:255,105,190;--text:#9d95b8;--hi:#e0d8f7;--white:#f6f1ff;
+--accent:rgb(var(--a));--soft:rgba(var(--a),.08);--mid:rgba(var(--a),.24);--r:18px;--ease:cubic-bezier(.22,.61,.36,1);--mono:'JetBrains Mono',monospace}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(900px 600px at 0 -10%,rgba(var(--a),.13),transparent 60%),radial-gradient(700px 500px at 100% 40%,rgba(var(--b),.1),transparent 60%),var(--bg)}
+body::after{content:"";position:fixed;inset:0;z-index:-1;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:48px 48px;-webkit-mask-image:radial-gradient(ellipse at 50% 0,#000,transparent 70%);mask-image:radial-gradient(ellipse at 50% 0,#000,transparent 70%)}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--mid);color:var(--white)}
+section{max-width:1180px;margin:0 auto;padding:clamp(5rem,9vw,7rem) clamp(1rem,4vw,2rem)}
+.title{font-size:clamp(1.8rem,5vw,2.6rem);font-weight:700;color:var(--hi);margin-bottom:clamp(2rem,5vw,3.25rem);display:flex;align-items:center;gap:1rem}
+.title span{color:var(--accent);font-size:.55em;font-weight:500;font-family:var(--mono)}
+.title::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent)}
+.intro{max-width:70ch;margin:-1.75rem 0 2.25rem}
+.intro b{color:var(--hi);font-weight:600}
+.btn{display:inline-flex;align-items:center;gap:.6rem;padding:.75rem 1.4rem;min-height:44px;border:1px solid var(--accent);border-radius:10px;color:var(--accent);font-weight:600;font-size:.92rem;transition:.3s var(--ease)}
+.btn:hover{background:var(--soft);transform:translateY(-3px);box-shadow:0 10px 25px -10px rgba(var(--a),.55)}
+.btn.solid{background:var(--accent);color:var(--bg)}
+.btn.solid:hover{filter:brightness(1.12)}
+.tags{display:flex;flex-wrap:wrap;gap:.5rem;list-style:none}
+.tags li{padding:.3rem .85rem;border-radius:999px;border:1px solid var(--border);background:var(--soft);color:var(--hi);font-size:.8rem}
+.tags li.key{border-color:var(--mid);color:var(--accent)}
+.tags small{color:var(--accent);margin-left:.3rem}
+
+nav{position:fixed;top:0;width:100%;height:64px;display:flex;align-items:center;justify-content:center;gap:clamp(.25rem,3vw,2.5rem);background:rgba(var(--bgr),.75);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid transparent;z-index:100;transition:.3s}
+nav.scrolled{border-color:var(--border);box-shadow:0 10px 30px -10px rgba(0,0,0,.7)}
+nav a{color:var(--hi);font-size:clamp(.78rem,2.4vw,.92rem);font-weight:500;padding:.5rem;transition:color .3s}
+nav a:hover{color:var(--accent)}
+
+#about{min-height:100svh;display:flex;align-items:center;justify-content:center;gap:clamp(2rem,6vw,4.5rem)}
+.photo{flex-shrink:0;width:clamp(160px,30vw,260px);aspect-ratio:1;border-radius:50%;overflow:hidden;border:3px solid var(--accent);box-shadow:0 0 0 12px var(--soft),0 25px 60px -10px rgba(var(--a),.32);animation:float 6s ease-in-out infinite}
+.photo img{width:100%;height:100%;object-fit:cover}
+@keyframes float{50%{transform:translateY(-10px)}}
+.badge{display:inline-flex;align-items:center;gap:.55rem;padding:.35rem .95rem;border:1px solid var(--mid);border-radius:999px;background:var(--soft);color:var(--accent);font-family:var(--mono);font-size:.78rem;margin-bottom:1.1rem}
+.badge::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:.3}}
+.hello{color:var(--accent);font-family:var(--mono);font-size:.95rem;margin-bottom:.5rem}
+h1{font-size:clamp(2.2rem,7vw,4.2rem);font-weight:800;line-height:1.1;letter-spacing:-.02em;background:linear-gradient(120deg,var(--white) 30%,var(--accent) 130%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.role{color:var(--hi);font-size:clamp(1.05rem,3vw,1.5rem);font-weight:600;margin:.4rem 0 1rem}
+.lead{max-width:54ch;margin-bottom:2rem}
+.cta{display:flex;flex-wrap:wrap;gap:1rem}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2.25rem;max-width:580px}
+.stats div{border-left:2px solid var(--mid);padding-left:.8rem}
+.stats b{display:block;color:var(--white);font-size:1.2rem;font-weight:700;line-height:1.25}
+.stats span{font-size:.74rem;line-height:1.35;display:block}
+
+.fit{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,310px),1fr));gap:1.25rem}
+.req{position:relative;background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1.5rem 1.5rem 1.4rem 1.75rem;overflow:hidden;transition:.35s var(--ease)}
+.req::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(var(--accent),rgba(var(--b),.85))}
+.req:hover{transform:translateY(-5px);border-color:var(--mid)}
+.ask{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.req h4{color:var(--white);font-size:1.07rem;font-weight:600;margin:.35rem 0 .6rem;line-height:1.35}
+.req p{font-size:.9rem}
+.proof{display:block;margin-top:.9rem;font-size:.78rem;color:var(--hi);font-family:var(--mono)}
+.proof::before{content:"↳ ";color:var(--accent)}
+
+.featured{display:grid;gap:clamp(2.5rem,6vw,4.5rem)}
+.feat{display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(1.5rem,4vw,3rem);align-items:center}
+.feat:nth-child(even) .media{order:2}
+.media{position:relative;border-radius:var(--r);overflow:hidden;border:1px solid var(--border);background:#000;box-shadow:0 30px 60px -25px rgba(0,0,0,.9)}
+.media::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(var(--a),.18);pointer-events:none}
+.media iframe{display:block;width:100%;aspect-ratio:16/9;border:0}
+.num{color:var(--accent);font-family:var(--mono);font-size:.85rem;letter-spacing:.1em}
+.feat h3{color:var(--white);font-size:clamp(1.5rem,4vw,2.1rem);font-weight:700;line-height:1.2;margin:.3rem 0 .9rem}
+.feat p{margin-bottom:1rem}
+.feat b{color:var(--hi);font-weight:600}
+.points{list-style:none;margin-bottom:1.25rem}
+.points li{position:relative;padding-left:1.4rem;margin-bottom:.45rem;font-size:.92rem}
+.points li::before{content:"▹";position:absolute;left:0;color:var(--accent)}
+.points code{font-family:var(--mono);font-size:.82em;color:var(--hi);background:var(--soft);padding:.05rem .35rem;border-radius:5px}
+.feat .tags{margin-bottom:1.5rem}
+.feat .cta{gap:.75rem}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:1.5rem}
+.card{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;transition:.35s var(--ease)}
+.card:hover{transform:translateY(-6px);border-color:var(--mid);box-shadow:0 25px 45px -20px rgba(0,0,0,.9)}
+.card .thumb{overflow:hidden;aspect-ratio:16/9}
+.card .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.card:hover .thumb img{transform:scale(1.07)}
+.card .body{flex:1;display:flex;flex-direction:column;padding:1.4rem}
+.card h4{color:var(--white);font-size:1.15rem;font-weight:600;margin-bottom:.4rem}
+.card p{font-size:.9rem;margin-bottom:1rem;flex:1}
+.card .tags{margin-bottom:1.1rem}
+.links{display:flex;gap:1.25rem}
+.links a{display:inline-flex;align-items:center;gap:.45rem;color:var(--hi);font-size:.88rem;font-weight:500;transition:color .25s}
+.links a:hover{color:var(--accent)}
+
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:1.5rem}
+.box{background:rgba(255,255,255,.025);border:1px solid var(--border);border-radius:var(--r);padding:clamp(1.25rem,3.5vw,1.9rem);transition:.35s var(--ease)}
+.box:hover{transform:translateY(-5px);border-color:var(--mid)}
+.box.core{grid-column:1/-1;border-color:var(--mid);background:linear-gradient(150deg,rgba(var(--a),.1),var(--card) 55%)}
+.box h4{display:flex;align-items:center;gap:.75rem;color:var(--hi);font-size:1.05rem;font-weight:600;margin-bottom:1.1rem}
+.box h4 i{width:42px;height:42px;display:grid;place-items:center;border-radius:12px;color:var(--accent);background:var(--soft);border:1px solid var(--mid)}
+
+.bio{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:1.5rem}
+.bio p{font-size:.94rem}
+.bio .box h4{margin-bottom:.9rem}
+
+#more{padding-top:2rem;padding-bottom:2rem}
+#more .title{font-size:clamp(1.15rem,3vw,1.4rem);color:var(--text);margin-bottom:1.25rem}
+.mini{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:.7rem}
+.row{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.8rem 1.1rem;border:1px solid var(--border);border-radius:12px;font-size:.84rem;opacity:.65;transition:opacity .3s}
+.row:hover{opacity:1}
+.row b{color:var(--hi);font-weight:600}
+.row .links{gap:.9rem;flex-shrink:0}
+.row .links a{font-size:1rem}
+
+#contact{text-align:center}
+.contact{max-width:640px;margin:0 auto;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:24px;padding:clamp(2rem,6vw,3.5rem) clamp(1.25rem,5vw,3rem)}
+.contact h2{color:var(--hi);font-size:clamp(1.8rem,5vw,2.6rem);margin-bottom:.75rem}
+.social{display:flex;justify-content:center;gap:1.25rem;margin:2rem 0}
+.social a{width:56px;height:56px;display:grid;place-items:center;border-radius:50%;border:1px solid var(--mid);color:var(--accent);font-size:1.35rem;transition:.3s var(--ease)}
+.social a:hover{background:var(--soft);border-color:var(--accent);transform:translateY(-4px)}
+.info{display:grid;gap:.6rem;justify-items:center;font-size:.95rem}
+.info i{color:var(--accent);margin-right:.6rem}
+.info a:hover{color:var(--accent)}
+footer{text-align:center;padding:2rem 1rem 3rem;font-size:.8rem;font-family:var(--mono)}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+
+@media(max-width:860px){.feat{grid-template-columns:1fr}.feat:nth-child(even) .media{order:0}}
+@media(max-width:700px){
+#about{flex-direction:column;text-align:center}
+.cta{justify-content:center}
+.feat .cta{justify-content:flex-start}
+.lead{margin-inline:auto}
+.stats{grid-template-columns:repeat(2,1fr);margin-inline:auto;text-align:left}
+.row{flex-wrap:wrap}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<nav>
+<a href="#about">About</a>
+<a href="#fit">Fit</a>
+<a href="#featured">Work</a>
+<a href="#skills">Skills</a>
+<a href="#contact">Contact</a>
+</nav>
+
+<section id="about">
+<div class="photo reveal"><img src="img/MainPhoto.jpeg" alt="Alexandre Tro"></div>
+<div class="reveal">
+<p class="badge">Open to Graphics Programmer roles</p>
+<p class="hello">Hi, my name is</p>
+<h1>Alexandre Tro Arribas</h1>
+<p class="role">Graphics Programmer · C++ · Real-time Rendering</p>
+<p class="lead">Real-time rendering is where I'm happiest — from pushing individual pixels into a Game Boy Advance framebuffer to a deferred/forward PBR pipeline with a node-based material editor in my own engine.</p>
+<div class="cta">
+<a href="#featured" class="btn solid"><i class="fas fa-wand-magic-sparkles"></i> See my graphics work</a>
+<a href="https://github.com/KuroNoKaminari" target="_blank" class="btn"><i class="fab fa-github"></i> GitHub</a>
+</div>
+<div class="stats">
+<div><b>PBR</b><span>Deferred + Forward</span></div>
+<div><b>Nodes</b><span>Material editor</span></div>
+<div><b>Post</b><span>Cel-shading pass</span></div>
+<div><b>Particles</b><span>Sand simulation</span></div>
+</div>
+</div>
+</section>
+
+<section id="fit">
+<h2 class="title reveal"><span>01.</span>What I Bring</h2>
+<p class="intro reveal">The visual side of an engine is where I like to work: <b>particle simulation</b>, <b>materials</b>, <b>post-process effects</b> and the <b>rendering and lighting pipeline</b>, built hand in hand with <b>art and VFX</b>. Here is where I've done each of those.</p>
+<div class="fit">
+<div class="req reveal"><span class="ask">Rendering &amp; lighting pipeline</span><h4>My own pipeline, end to end</h4><p>Hybrid deferred + forward renderer in Trodo with PBR shading, shadows and an HDRI skybox, plus dynamic lighting in my procedural forest.</p><span class="proof">Trodo Engine · Procedural Forest</span></div>
+<div class="req reveal"><span class="ask">Materials</span><h4>Materials as node graphs</h4><p>A node-based Material Editor inspired by Unreal Engine 5, so materials are assembled visually instead of being hard-coded per shader.</p><span class="proof">Trodo Engine</span></div>
+<div class="req reveal"><span class="ask">Post-process effects</span><h4>Stylised post-processing</h4><p>A cel-shading post-process pass over a procedurally generated scene, with ImGui controls to tweak the look in real time.</p><span class="proof">Procedural Forest</span></div>
+<div class="req reveal"><span class="ask">Particle simulation</span><h4>Particles, down to the pixel</h4><p>A falling-sand simulation on Game Boy Advance with particle update and gravity hand-written in ARM assembly, drawn straight to the framebuffer.</p><span class="proof">ARM on GBA · Sand</span></div>
+<div class="req reveal"><span class="ask">Work closely with Art / VFX</span><h4>Visuals that serve the game</h4><p>In Beerserker I built a decal-based floor telegraph with a tiling arrow texture and custom material parameters, and timer-delayed fracture for breakable crystals, inside a 15-person team with artists.</p><span class="proof">Beerserker · Steam release</span></div>
+<div class="req reveal"><span class="ask">Thorough C++ &amp; technical background</span><h4>Fundamentals first</h4><p>HND in Game Programming at ESAT, a full engine written from scratch in C++/OpenGL, and assembly-level understanding of how pixels reach the screen.</p><span class="proof">ESAT · Trodo Engine · GBA</span></div>
+</div>
+</section>
+
+<section id="featured">
+<h2 class="title reveal"><span>02.</span>Featured Graphics Work</h2>
+<div class="featured">
+
+<article class="feat reveal">
+<div class="media"><iframe src="https://www.youtube.com/embed/y-EnX6kPlxw" title="Trodo Engine" loading="lazy" allowfullscreen></iframe></div>
+<div>
+<span class="num">FEATURED 01 · RENDERER</span>
+<h3>Trodo Engine</h3>
+<p>A <b>custom graphics engine built from scratch</b> in C++ and OpenGL, with its own rendering pipeline, material authoring and a real-time editor viewport.</p>
+<ul class="points">
+<li>Hybrid Deferred + Forward rendering pipeline</li>
+<li>Physically based shading (PBR) with shadows</li>
+<li>HDRI skybox</li>
+<li>Node-based Material Editor inspired by UE5</li>
+<li>Real-time editor Viewport with gizmos, Hierarchy, Inspector and Content Browser</li>
+<li>Archetype ECS feeding the renderer, with a dirty-flag system so only changed objects update</li>
+</ul>
+<ul class="tags"><li class="key">C++</li><li class="key">OpenGL</li><li class="key">PBR</li><li>Shaders</li><li>ImGui</li></ul>
+</div>
+</article>
+
+<article class="feat reveal">
+<div class="media"><iframe src="https://www.youtube.com/embed/uxjkgIhi1qc" title="Procedural Forest" loading="lazy" allowfullscreen></iframe></div>
+<div>
+<span class="num">FEATURED 02 · LIGHTING &amp; POST</span>
+<h3>Procedural Forest</h3>
+<p>A forest rendered in <b>OpenGL</b>: geometry generated procedurally, lit dynamically and finished with a <b>stylised post-process</b>.</p>
+<ul class="points">
+<li>Procedural meshes built as surfaces of revolution</li>
+<li>Dynamic lighting across the scene</li>
+<li>Cel-shading post-process effect</li>
+<li>ImGui controls for real-time tweaking</li>
+</ul>
+<ul class="tags"><li class="key">C++</li><li class="key">OpenGL</li><li>Post-process</li><li>ImGui</li></ul>
+</div>
+</article>
+
+<article class="feat reveal">
+<div class="media"><iframe src="https://www.youtube.com/embed/K3HpZDzAiu0" title="ARM Assembly on GBA" loading="lazy" allowfullscreen></iframe></div>
+<div>
+<span class="num">FEATURED 03 · PIXELS BY HAND</span>
+<h3>Particles &amp; Pixels on Game Boy Advance</h3>
+<p>Two GBA projects with their core logic <b>hand-written in ARM assembly</b>, drawing <b>pixel by pixel</b> straight to the framebuffer — no API between me and the screen.</p>
+<ul class="points">
+<li><b>Sand:</b> falling-sand particle simulation with per-particle update and gravity</li>
+<li><b>Snake:</b> movement, growth, collisions and rendering in assembly</li>
+<li>ARM7TDMI, built with make and devkitPro on Linux</li>
+</ul>
+<ul class="tags"><li class="key">ARM Assembly</li><li>C</li><li>devkitPro</li><li>GBA</li></ul>
+</div>
+</article>
+
+</div>
+</section>
+
+<section id="projects">
+<h2 class="title reveal"><span>03.</span>More Visual Work</h2>
+<div class="grid">
+
+<article class="card reveal">
+<div class="body">
+<h4>Beerserker: The Stolen Brew</h4>
+<p>Shipped on Steam with a 15-person team. Decal-based attack telegraphs with tiling textures and custom material parameters, timer-delayed crystal fracture and camera blends for boss intros.</p>
+<ul class="tags"><li class="key">C++</li><li>Unreal Engine 5</li><li>Materials</li></ul>
+<div class="links"><a href="https://youtu.be/2bR2OxafTjQ" target="_blank"><i class="fab fa-youtube"></i> Video</a><a href="https://store.steampowered.com/app/4522440/Beerserker_The_Stolen_Brew/" target="_blank"><i class="fab fa-steam"></i> Steam</a></div>
+</div>
+</article>
+
+<article class="card reveal">
+<div class="thumb"><img src="img/portada_spider.png" alt="Ethereal Embers" loading="lazy"></div>
+<div class="body">
+<h4>Ethereal Embers</h4>
+<p>Unreal dungeon crawler with a modular C++ damage-feedback plugin, a menu manager and a 3-phase boss.</p>
+<ul class="tags"><li class="key">C++</li><li>Unreal Engine</li></ul>
+<div class="links"><a href="https://youtu.be/ikOEDquEDrQ" target="_blank"><i class="fab fa-youtube"></i> Video</a><a href="https://kuronokaminari.itch.io/ethereal-embers" target="_blank"><i class="fab fa-itch-io"></i> Play</a></div>
+</div>
+</article>
+
+</div>
+</section>
+
+<section id="skills">
+<h2 class="title reveal"><span>04.</span>Skills</h2>
+<div class="skills">
+<div class="box core reveal"><h4><i class="fas fa-wand-magic-sparkles"></i>Graphics Core</h4><ul class="tags"><li class="key">Deferred &amp; forward rendering</li><li class="key">PBR &amp; lighting</li><li class="key">Shadows</li><li class="key">Material systems &amp; node editors</li><li class="key">Post-processing</li><li class="key">Procedural geometry</li><li class="key">Particle simulation</li></ul></div>
+<div class="box reveal"><h4><i class="fas fa-cubes"></i>Graphics &amp; Engines</h4><ul class="tags"><li>OpenGL</li><li>Custom engine (Trodo)</li><li>Unreal Engine 5</li><li>Unity</li></ul></div>
+<div class="box reveal"><h4><i class="fas fa-code"></i>Languages</h4><ul class="tags"><li>C++</li><li>C</li><li>ARM Assembly</li><li>C#</li><li>Bash</li><li>SQL</li><li>HTML</li></ul></div>
+<div class="box reveal"><h4><i class="fas fa-screwdriver-wrench"></i>Tools</h4><ul class="tags"><li>Visual Studio</li><li>ImGui / ImGuizmo</li><li>GitHub</li><li>Perforce</li><li>devkitPro</li></ul></div>
+<div class="box reveal"><h4><i class="fas fa-language"></i>Spoken</h4><ul class="tags"><li>Spanish<small>Native</small></li><li>Valencian<small>Native</small></li><li>English<small>Advanced</small></li><li>Japanese<small>Beginner</small></li></ul></div>
+</div>
+</section>
+
+<section id="bio">
+<h2 class="title reveal"><span>05.</span>Biography</h2>
+<div class="bio">
+<div class="box reveal"><h4><i class="fas fa-user"></i>Personality</h4><p>Charismatic and friendly, with leadership skills and a strong sense of responsibility. I enjoy working with colleagues and get along well with everyone.</p></div>
+<div class="box reveal"><h4><i class="fas fa-graduation-cap"></i>Background</h4><p>HND in Game Programming at ESAT (2026). Before that, I worked as a waiter for three years to pay for my studies.</p></div>
+<div class="box reveal"><h4><i class="fas fa-palette"></i>Goals</h4><p>I want to build the visuals players remember: rendering, materials and effects that bring a world to life, working side by side with artists.</p></div>
+</div>
+</section>
+
+<section id="more">
+<h2 class="title reveal"><span>06.</span>Also Built</h2>
+<div class="mini reveal">
+<div class="row"><span><b>Kurenha</b> — Bullet-hell roguelike on Google Play</span><span class="links"><a href="img/KurenhaTrailer.mp4" target="_blank" aria-label="Trailer"><i class="fas fa-play"></i></a><a href="https://play.google.com/store/apps/details?id=com.ESAT.KURENHA" target="_blank" aria-label="Google Play"><i class="fab fa-google-play"></i></a></span></div>
+<div class="row"><span><b>Humanoid Locomotion via AI</b> — RL in Unity</span><span class="links"><a href="https://youtu.be/vXak4CAlLq8" target="_blank" aria-label="Video"><i class="fab fa-youtube"></i></a></span></div>
+<div class="row"><span><b>Shadow Sword</b> — Pixel-art idle clicker</span><span class="links"><a href="https://youtu.be/ZM3Py_xxY2M" target="_blank" aria-label="Video"><i class="fab fa-youtube"></i></a><a href="https://kuronokaminari.itch.io/shadow-sword" target="_blank" aria-label="Play"><i class="fab fa-itch-io"></i></a></span></div>
+<div class="row"><span><b>Dungeons and Bubbles</b> — Global Game Jam 2025</span><span class="links"><a href="https://youtu.be/iSl1OE3aOhQ" target="_blank" aria-label="Video"><i class="fab fa-youtube"></i></a><a href="https://tatiananav.itch.io/dungeons-and-bubbles" target="_blank" aria-label="Play"><i class="fab fa-itch-io"></i></a></span></div>
+<div class="row"><span><b>Nintendo Museum</b> — Interactive 3D museum</span><span class="links"><a href="https://youtu.be/_Qg73A3XkMo" target="_blank" aria-label="Video"><i class="fab fa-youtube"></i></a><a href="https://kuronokaminari.itch.io/nintendo-museum" target="_blank" aria-label="Play"><i class="fab fa-itch-io"></i></a></span></div>
+<div class="row"><span><b>Cube Dash</b> — Synthwave infinite runner</span><span class="links"><a href="https://youtu.be/kvZJ3OLCrmM" target="_blank" aria-label="Video"><i class="fab fa-youtube"></i></a><a href="https://kuronokaminari.itch.io/cubedash" target="_blank" aria-label="Play"><i class="fab fa-itch-io"></i></a></span></div>
+</div>
+</section>
+
+<section id="contact">
+<div class="contact reveal">
+<h2>Get in touch</h2>
+<p>Looking for someone who loves making pixels behave? Let's talk.</p>
+<div class="social">
+<a href="https://github.com/KuroNoKaminari" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+<a href="https://www.linkedin.com/in/alexandre-tro-arribas-1a6b99349/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+<a href="https://kuronokaminari.itch.io/" target="_blank" aria-label="itch.io"><i class="fab fa-itch-io"></i></a>
+</div>
+<div class="info">
+<a href="mailto:alextroa22@gmail.com"><i class="fas fa-envelope"></i>alextroa22@gmail.com</a>
+<a href="tel:+34622785244"><i class="fas fa-phone"></i>+34 622 785 244</a>
+<span><i class="fas fa-location-dot"></i>Alzira, Valencia</span>
+</div>
+<a href="mailto:alextroa22@gmail.com" class="btn solid" style="margin-top:2rem"><i class="fas fa-paper-plane"></i> Say hello</a>
+</div>
+</section>
+
+<footer>Designed &amp; built by Alexandre Tro</footer>
+
+
+<script>
+const nav=document.querySelector('nav');
+addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>10),{passive:true});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
